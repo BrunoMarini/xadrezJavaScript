@@ -1,1 +1,1 @@
-# xadrezJavaScript
+# Xadrez feito em JavaScript
