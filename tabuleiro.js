@@ -38,6 +38,35 @@ class Tabuleiro {
             this._pecasP.push(new peao('P', 6, i, "" + 6 + i));
             this._tabuleiro[6][i] =  this._B_PAWN;
         }
+
+        for(var i = 0, j = 0; j < 2; i = 7, j++){
+            this._pecasB.push(new torre('W', 0, i, "" + 0 + i));
+            this._tabuleiro[0][i] =  this._W_ROOK;
+            this._pecasP.push(new torre('B', 7, i, "" + 7 + i));
+            this._tabuleiro[7][i] =  this._B_ROOK;
+        }
+        for(var i = 1, j = 0; j < 2; i = 6, j++){
+            this._pecasB.push(new cavalo('W', 0, i, "" + 0 + i));
+            this._tabuleiro[0][i] =  this._W_KNIGHT;
+            this._pecasP.push(new cavalo('B', 7, i, "" + 7 + i));
+            this._tabuleiro[7][i] =  this._B_KNIGHT;
+        }
+        for(var i = 2, j = 0; j < 2; i = 5, j++){
+            this._pecasB.push(new bispo('W', 0, i, "" + 0 + i));
+            this._tabuleiro[0][i] =  this._W_BISHOP;
+            this._pecasP.push(new bispo('B', 7, i, "" + 7 + i));
+            this._tabuleiro[7][i] =  this._B_BISHOP;
+        }
+
+        this._pecasB.push(new rainha('W', 0, 3, "" + 0 + 3));
+        this._tabuleiro[0][3] =  this._W_QUEEN;
+        this._pecasP.push(new rainha('B', 7, 3, "" + 7 + 3));
+        this._tabuleiro[7][3] =  this._B_QUEEN;
+
+        this._pecasB.push(new rei('W', 0, 4, "" + 0 + 4));
+        this._tabuleiro[0][4] =  this._W_KING;
+        this._pecasP.push(new rei('B', 7, 4, "" + 7 + 4));
+        this._tabuleiro[7][4] =  this._B_KING;
     }
 
     peca(i, j){
@@ -46,19 +75,21 @@ class Tabuleiro {
 
         for(var x = 0; x < 16; x++){
             if(this._pecasB[x].id == id){
-                console.log(this._pecasB[x]);
                 return this._pecasB[x];
             }
             if(this._pecasP[x].id == id){
-                console.log(this._pecasP[x]);
                 return this._pecasP[x];
             }
         }
+
+        return null;
     }
 
     realizarMovimento(peca, i, j){
         peca.mover(this._tabuleiro, i, j);
     }
+
+}
 
     // removerPeca(peca, i, j){
     //     console.log(this._tabuleiro);
@@ -74,5 +105,3 @@ class Tabuleiro {
     //     this._tabuleiro[i][j] = tipo;
     //     console.log(this._tabuleiro);
     // }
-
-}

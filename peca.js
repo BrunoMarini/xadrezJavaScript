@@ -25,4 +25,12 @@ class peca {
     set id(id){
         this._id = id;
     }
+
+    set i(i){
+        this._i = i;
+    }
+
+    set j(j){
+        this._j = j;
+    }
 }

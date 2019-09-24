@@ -72,7 +72,6 @@ function JogoXadrez() {
 	// Sempre que esse método for executado com sucesso (retornando true) o turno deve ser atualizado, passando o controle para o outro jogador. Obs: não é permitido que o usuário mova uma peça de outro jogador.
 	this.moverPeca = function(peca, i, j) {
 		// Não pode mover uma peça para fora do tabuleiro.
-		console.log("Mover");
 		if (i > 7 || i < 0 || j > 7 || j < 0)
 			return false;
 
@@ -82,7 +81,9 @@ function JogoXadrez() {
 
 		// Esse é um comportamento de exemplo.
 		// <<<<<<<
+		
 		tabuleiro.realizarMovimento(peca, i, j);
+
 		//tabuleiro.addPeca(peca, i, j, tabuleiro.removerPeca(peca));
 		// tabuleiro[peca.i][peca.j] = 0;
 		// tabuleiro[i][j] = peca.id;

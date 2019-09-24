@@ -13,7 +13,7 @@ function select(i,j) {
 	if (select.obj_clicado === undefined || select.obj_clicado === null) {
 		
 		var peca = jogo.getPeca(i, j);
-
+		
 		if (peca == null)
 			return;
 
@@ -39,7 +39,7 @@ function atualizar_jogo() {
 	const pecas = ["", "♔", "♕", "♖", "♗", "♘", "♙", "♚", "♛", "♜", "♝", "♞", "♟"];
 	let tabuleiro = document.getElementById('tabuleiro');
 	let tabData = jogo.getTabuleiro();
-	console.log(tabData);
+	//console.log(tabData);
 	for (var i = 0, n = tabuleiro.rows.length; i < n; i++) {
 		for (var j = 0, m = tabuleiro.rows[i].cells.length; j < m; j++) {
 			obj = tabuleiro.rows[i].cells[j]
