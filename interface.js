@@ -6,14 +6,13 @@ function init() {
 }
 
 function select(i,j) {
-
 	var tabuleiro = document.getElementById('tabuleiro');
 	var obj = tabuleiro.rows[i].cells[j]
 
 	if (select.obj_clicado === undefined || select.obj_clicado === null) {
-		
+
 		var peca = jogo.getPeca(i, j);
-		
+
 		if (peca == null)
 			return;
 
@@ -31,7 +30,7 @@ function select(i,j) {
 	} else {
 
 		alert("Movimento invalido!");
-		
+
 	}
 }
 
@@ -39,7 +38,7 @@ function atualizar_jogo() {
 	const pecas = ["", "♔", "♕", "♖", "♗", "♘", "♙", "♚", "♛", "♜", "♝", "♞", "♟"];
 	let tabuleiro = document.getElementById('tabuleiro');
 	let tabData = jogo.getTabuleiro();
-	//console.log(tabData);
+
 	for (var i = 0, n = tabuleiro.rows.length; i < n; i++) {
 		for (var j = 0, m = tabuleiro.rows[i].cells.length; j < m; j++) {
 			obj = tabuleiro.rows[i].cells[j]

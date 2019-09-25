@@ -1,5 +1,4 @@
 function JogoXadrez() {
-	
 	// Identificador de cada peça!
 	const W_KING   = 1;  // "&#9812" ♔
 	const W_QUEEN  = 2;  // "&#9813" ♕
@@ -46,7 +45,9 @@ function JogoXadrez() {
 	// Esse método retorna um array 8x8 contendo o estado do tabuleiro.
 	this.getTabuleiro = function() {
 		// return tabuleiro.getRepresentacao();
+
 		return tabuleiro.tabuleiro;
+
 	}
 
 	// Esse método reinicia o jogo.
@@ -81,7 +82,6 @@ function JogoXadrez() {
 
 		// Esse é um comportamento de exemplo.
 		// <<<<<<<
-		
 		tabuleiro.realizarMovimento(peca, i, j);
 
 		//tabuleiro.addPeca(peca, i, j, tabuleiro.removerPeca(peca));
@@ -90,8 +90,6 @@ function JogoXadrez() {
 		// peca.i = i;
 		// peca.j = j;
 		// >>>>>>>
-
-
 		return true;
 	}
 }
