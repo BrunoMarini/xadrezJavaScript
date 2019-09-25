@@ -10,6 +10,7 @@ function select(i,j) {
 	var obj = tabuleiro.rows[i].cells[j]
 
 	if (select.obj_clicado === undefined || select.obj_clicado === null) {
+
 		var peca = jogo.getPeca(i, j);
 
 		if (peca == null)
@@ -19,12 +20,17 @@ function select(i,j) {
 		select.obj_bgcolor = obj.style.backgroundColor;
 		select.peca = peca;
 		obj.style.backgroundColor = "green";
+
 	} else if (jogo.moverPeca(select.peca, i, j)) {
+
 		select.obj_clicado.style.backgroundColor = select.obj_bgcolor;
 		select.obj_clicado = null;
 		atualizar_jogo();
+
 	} else {
+
 		alert("Movimento invalido!");
+
 	}
 }
 

@@ -13,26 +13,41 @@ function JogoXadrez() {
 	const B_KNIGHT = 11; // "&#9822" ♞
 	const B_PAWN   = 12; // "&#9823" ♟
 
+	let tabuleiro = new Tabuleiro();
+	tabuleiro.colocarPecas();
+
 	// Esse é um código de exemplo
 	// <<<<<<<
-	var tabuleiro = new Array(8);
-	for(var i = 0; i < 8; i++) {
-		tabuleiro[i] = new Array(8);
-		for(j = 0; j < 8; j++)
-			tabuleiro[i][j] = 0; // ID_1 = 0
-	}
+	// var tabuleiro = new Array(8);
+	// let pecas = [];
 
-	var peca = {};
-	peca.id = W_PAWN;
-	peca.i = 0;
-	peca.j = 0;
-	tabuleiro[peca.i][peca.j] = peca.id;
+	// for(var i = 0; i < 8; i++) {
+	// 	tabuleiro[i] = new Array(8);
+	// 	for(j = 0; j < 8; j++)
+	// 		tabuleiro[i][j] = 0; // ID_1 = 0
+	// }
+
+	// for(var i = 0; i < 8; i++){
+	// 	for(var j = 0; j < 8; j++){
+	// 		if(i == 0){
+	// 			pecas[i] = new 
+	// 		}
+	// 	}
+	// }
+
+	// var peca = {};
+	// peca.id = W_PAWN;
+	// peca.i = 0;
+	// peca.j = 0;
+	// tabuleiro[peca.i][peca.j] = peca.id;
 	// >>>>>>>
 
 	// Esse método retorna um array 8x8 contendo o estado do tabuleiro.
 	this.getTabuleiro = function() {
 		// return tabuleiro.getRepresentacao();
-		return tabuleiro;
+
+		return tabuleiro.tabuleiro;
+
 	}
 
 	// Esse método reinicia o jogo.
@@ -45,10 +60,11 @@ function JogoXadrez() {
 	this.getPeca = function(i, j) {
 		// Esse é um código de exemplo.
 		// <<<<<<<
-		if (i == peca.i && j == peca.j)
-			return peca;
-		// >>>>>>>
-		return null;
+		return tabuleiro.peca(i, j);
+		// if (i == peca.i && j == peca.j)
+		// 	return peca;
+		// // >>>>>>>
+		// return null;
 	}
 
 	// Esse método move a peça para a posição i, j do tabuleiro.
@@ -66,10 +82,13 @@ function JogoXadrez() {
 
 		// Esse é um comportamento de exemplo.
 		// <<<<<<<
-		tabuleiro[peca.i][peca.j] = 0;
-		tabuleiro[i][j] = peca.id;
-		peca.i = i;
-		peca.j = j;
+		tabuleiro.realizarMovimento(peca, i, j);
+
+		//tabuleiro.addPeca(peca, i, j, tabuleiro.removerPeca(peca));
+		// tabuleiro[peca.i][peca.j] = 0;
+		// tabuleiro[i][j] = peca.id;
+		// peca.i = i;
+		// peca.j = j;
 		// >>>>>>>
 		return true;
 	}
