@@ -33,4 +33,8 @@ class peca {
     set j(j){
         this._j = j;
     }
+
+    set tipo(tipo){
+        this._tipo = tipo;
+    }
 }

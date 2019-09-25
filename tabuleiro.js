@@ -16,8 +16,8 @@ class Tabuleiro {
         this._B_PAWN   = 12; // "&#9823" ♟
 
         this._tabuleiro = new Array(8);
-	    this._pecasB = [];
-        this._pecasP = [];
+	    this._pecasW = [];
+        this._pecasB = [];
 
         for(var i = 0; i < 8; i++) {
             this._tabuleiro[i] = new Array(8);
@@ -32,53 +32,75 @@ class Tabuleiro {
 
     colocarPecas(){
         for(var i = 0; i < 8; i++){
-            this._pecasB.push(new peao('B', 1, i, "" + 1 + i));
+            this._pecasW.push(new peao('W', 1, i, "" + 1 + i));
             this._tabuleiro[1][i] =  this._W_PAWN;
             
-            this._pecasP.push(new peao('P', 6, i, "" + 6 + i));
+            this._pecasB.push(new peao('B', 6, i, "" + 6 + i));
             this._tabuleiro[6][i] =  this._B_PAWN;
         }
 
         for(var i = 0, j = 0; j < 2; i = 7, j++){
-            this._pecasB.push(new torre('W', 0, i, "" + 0 + i));
+            this._pecasW.push(new torre('W', 0, i, "" + 0 + i));
             this._tabuleiro[0][i] =  this._W_ROOK;
-            this._pecasP.push(new torre('B', 7, i, "" + 7 + i));
+            this._pecasB.push(new torre('B', 7, i, "" + 7 + i));
             this._tabuleiro[7][i] =  this._B_ROOK;
         }
         for(var i = 1, j = 0; j < 2; i = 6, j++){
-            this._pecasB.push(new cavalo('W', 0, i, "" + 0 + i));
+            this._pecasW.push(new cavalo('W', 0, i, "" + 0 + i));
             this._tabuleiro[0][i] =  this._W_KNIGHT;
-            this._pecasP.push(new cavalo('B', 7, i, "" + 7 + i));
+            this._pecasB.push(new cavalo('B', 7, i, "" + 7 + i));
             this._tabuleiro[7][i] =  this._B_KNIGHT;
         }
         for(var i = 2, j = 0; j < 2; i = 5, j++){
-            this._pecasB.push(new bispo('W', 0, i, "" + 0 + i));
+            this._pecasW.push(new bispo('W', 0, i, "" + 0 + i));
             this._tabuleiro[0][i] =  this._W_BISHOP;
-            this._pecasP.push(new bispo('B', 7, i, "" + 7 + i));
+            this._pecasB.push(new bispo('B', 7, i, "" + 7 + i));
             this._tabuleiro[7][i] =  this._B_BISHOP;
         }
 
-        this._pecasB.push(new rainha('W', 0, 3, "" + 0 + 3));
+        this._pecasW.push(new rainha('W', 0, 3, "" + 0 + 3));
         this._tabuleiro[0][3] =  this._W_QUEEN;
-        this._pecasP.push(new rainha('B', 7, 3, "" + 7 + 3));
+        this._pecasB.push(new rainha('B', 7, 3, "" + 7 + 3));
         this._tabuleiro[7][3] =  this._B_QUEEN;
 
-        this._pecasB.push(new rei('W', 0, 4, "" + 0 + 4));
+        this._pecasW.push(new rei('W', 0, 4, "" + 0 + 4));
         this._tabuleiro[0][4] =  this._W_KING;
-        this._pecasP.push(new rei('B', 7, 4, "" + 7 + 4));
+        this._pecasB.push(new rei('B', 7, 4, "" + 7 + 4));
         this._tabuleiro[7][4] =  this._B_KING;
     }
 
     peca(i, j){
 
         var id = "" + i + j;
+        var p;
+        var flag = 0;
 
         for(var x = 0; x < 16; x++){
-            if(this._pecasB[x].id == id){
-                return this._pecasB[x];
+            if(this._pecasW[x].id == id){
+                p = this._pecasW[x];
+                flag++;
             }
-            if(this._pecasP[x].id == id){
-                return this._pecasP[x];
+            if(this._pecasB[x].id == id){
+                p = this._pecasB[x];
+                flag++;
+            }
+        }
+
+        if(flag == 1)
+            return p;
+        else if(flag == 2){
+            if(this.tabuleiro[i][j] > 6){
+                for(var x = 0; x < 16; x++){
+                    if(this._pecasB[x].id == id){
+                        return this._pecasB[x];
+                    }
+                }
+            }else{
+                for(var x = 0; x < 16; x++){
+                    if(this._pecasW[x].id == id){
+                        return this._pecasW[x];
+                    }
+                }
             }
         }
 
@@ -86,7 +108,9 @@ class Tabuleiro {
     }
 
     realizarMovimento(peca, i, j){
+
         peca.mover(this._tabuleiro, i, j);
+
     }
 
 }
