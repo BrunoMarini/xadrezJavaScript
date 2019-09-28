@@ -16,6 +16,7 @@ class Tabuleiro {
         this._B_PAWN   = 12; // "&#9823" ♟
 
         this._tabuleiro = new Array(8);
+        this._fimDeJogo = 0;
 	    this._pecasW = [];
         this._pecasB = [];
 
@@ -24,6 +25,10 @@ class Tabuleiro {
             for(var j = 0; j < 8; j++)
             this._tabuleiro[i][j] = 0; // ID_1 = 0
         }
+    }
+
+    get ganhador(){
+        return this._fimDeJogo;
     }
 
     get tabuleiro(){
@@ -103,12 +108,22 @@ class Tabuleiro {
 
             if(peca.tipo == "B"){
                 for(var k = 0; k < this._pecasW.length; k++)
-                    if(this._pecasW[k].i == i && this._pecasW[k].j == j)
+                    if(this._pecasW[k].i == i && this._pecasW[k].j == j){
+                        
+                        if(this._pecasW[k] instanceof rei)
+                            this._fimDeJogo = 'B';
+
                         this._pecasW.splice(k, 1);
+                    }
             }else{
                 for(var k = 0; k < this._pecasB.length; k++)
-                    if(this._pecasB[k].i == i && this._pecasB[k].j == j)
+                    if(this._pecasB[k].i == i && this._pecasB[k].j == j){
+
+                        if(this._pecasW[k] instanceof rei)
+                            this._fimDeJogo = 'W';
+
                         this._pecasB.splice(k, 1);
+                    }
             }
             peca.comi = 0;
         }
@@ -117,22 +132,12 @@ class Tabuleiro {
 	}
 
     reiniciar(){
-
+        for(var i = 0; i < 8; i++){
+            for(var j = 0; j < 8; j++){
+                this.tabuleiro[i][j] = 0;
+            }
+        }
+        this.colocarPecas();
     }
 
 }
-
-    // removerPeca(peca, i, j){
-    //     console.log(this._tabuleiro);
-    //     var tipo = this._tabuleiro[peca.id[0]][peca.id[1]];
-    //     this._tabuleiro[peca.id[0]][peca.id[1]] = 0;
-    //     console.log(this._tabuleiro);
-    //     return tipo;
-    // }
-    // addPeca(peca, i, j, tipo){
-    //     console.log(this._tabuleiro);
-    //     peca.id = "" + i + j;
-    //     console.log(tipo);
-    //     this._tabuleiro[i][j] = tipo;
-    //     console.log(this._tabuleiro);
-    // }

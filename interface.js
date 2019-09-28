@@ -1,5 +1,6 @@
 //var jogo = new JogoXadrez();
 let jogo = new Tabuleiro();
+let vezJogador = "W";
 jogo.colocarPecas();
 
 function init() {
@@ -20,6 +21,14 @@ function select(i,j) {
 		if (peca == null)
 			return;
 
+		if(peca.tipo != vezJogador){
+			if(vezJogador != 'F')
+				alert(vezJogador == 'B' ? "É a vez do jogador preto" : "É a vez do jogador branco");
+			else
+				alert("Jogo encerrado!\n Caso deseje jogar novamente clique no botão \"Reiniciar Jogo\"");	
+			return;
+		}
+
 		select.obj_clicado = obj;
 		select.obj_bgcolor = obj.style.backgroundColor;
 		select.peca = peca;
@@ -29,6 +38,22 @@ function select(i,j) {
 
 		select.obj_clicado.style.backgroundColor = select.obj_bgcolor;
 		select.obj_clicado = null;
+		
+		if(jogo.ganhador != 0){
+			if(jogo.ganhador == 'W'){
+				alert("Vitoria para as pecas brancas!");
+				vezJogador = 'F';
+			}else{
+				alert("Vitoria para as pecas pretaas!");
+				vezJogador = 'F';
+			}
+		}else{
+			if(vezJogador == 'W')
+				vezJogador = 'B';
+			else
+				vezJogador = 'W';
+		}
+
 		atualizar_jogo();
 
 	} else {
@@ -55,6 +80,8 @@ function atualizar_jogo() {
 
 function reiniciar_jogo() {
 	jogo.reiniciar();
+	atualizar_jogo();
+	//location.reload();
 }
 
 function gerar_tabuleiro() {
