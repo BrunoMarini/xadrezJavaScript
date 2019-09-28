@@ -17,7 +17,6 @@ class torre extends peca{
 
     verificaPodeMovimentar(tab, x, y){
         
-        
         if(tab[x][y] != 0){
             super.comi = 1;
             if(super.tipo == "B"){
