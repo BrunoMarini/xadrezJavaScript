@@ -75,41 +75,48 @@ class Tabuleiro {
         var p;
         var flag = 0;
 
-        for(var x = 0; x < 16; x++){
-            if(this._pecasW[x].id == id){
-                p = this._pecasW[x];
-                flag++;
-            }
-            if(this._pecasB[x].id == id){
-                p = this._pecasB[x];
-                flag++;
-            }
-        }
-
-        if(flag == 1)
-            return p;
-        else if(flag == 2){
-            if(this.tabuleiro[i][j] > 6){
-                for(var x = 0; x < 16; x++){
-                    if(this._pecasB[x].id == id){
-                        return this._pecasB[x];
-                    }
-                }
-            }else{
-                for(var x = 0; x < 16; x++){
-                    if(this._pecasW[x].id == id){
-                        return this._pecasW[x];
-                    }
-                }
-            }
+        if(this._tabuleiro[i][j] > 6){                         //Procura caso a peca seja preta
+            for(var x =  0; x < this._pecasB.length; x++)
+                if(this._pecasB[x].id == id)
+                    return this._pecasB[x];
+        }else{                                                  //Procura caso a peca seja branca
+            for(var x =  0; x < this._pecasW.length; x++)
+                if(this._pecasW[x].id == id)
+                    return this._pecasW[x];
         }
 
         return null;
     }
 
-    realizarMovimento(peca, i, j){
+    moverPeca(peca, i, j){
+		// Não pode mover uma peça para fora do tabuleiro.
+		if (i > 7 || i < 0 || j > 7 || j < 0)
+			return false;
 
-        peca.mover(this._tabuleiro, i, j);
+		// Não pode mover uma peça para o mesmo lugar.
+		if (peca.i == i && peca.j == j)
+			return false;
+
+		var x = peca.mover(this._tabuleiro, i, j);
+
+        if(peca.comi == 1){
+
+            if(peca.tipo == "B"){
+                for(var k = 0; k < this._pecasW.length; k++)
+                    if(this._pecasW[k].i == i && this._pecasW[k].j == j)
+                        this._pecasW.splice(k, 1);
+            }else{
+                for(var k = 0; k < this._pecasB.length; k++)
+                    if(this._pecasB[k].i == i && this._pecasB[k].j == j)
+                        this._pecasB.splice(k, 1);
+            }
+            peca.comi = 0;
+        }
+
+        return x;
+	}
+
+    reiniciar(){
 
     }
 

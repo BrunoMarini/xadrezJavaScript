@@ -4,6 +4,15 @@ class peca {
         this._i = i;
         this._j = j;
         this._id = id;
+        this._comi = 0;
+    }
+
+    get comi(){
+        return this._comi;
+    }
+
+    set comi(comi){
+        this._comi = comi;
     }
 
     get id(){

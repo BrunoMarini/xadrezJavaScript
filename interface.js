@@ -1,4 +1,6 @@
-var jogo = new JogoXadrez();
+//var jogo = new JogoXadrez();
+let jogo = new Tabuleiro();
+jogo.colocarPecas();
 
 function init() {
 	gerar_tabuleiro();
@@ -13,8 +15,8 @@ function select(i,j) {
 	if (select.obj_clicado === undefined || select.obj_clicado === null) {
 		
 		if(i >= 0 && i <= 7 && j >= 0 && j <= 7)
-			var peca = jogo.getPeca(i, j);
-		console.log(peca);
+			var peca = jogo.peca(i, j);
+
 		if (peca == null)
 			return;
 
@@ -32,6 +34,8 @@ function select(i,j) {
 	} else {
 
 		alert("Movimento invalido!");
+		select.obj_clicado.style.backgroundColor = select.obj_bgcolor;
+		select.obj_clicado = null;
 		
 	}
 }
@@ -39,8 +43,8 @@ function select(i,j) {
 function atualizar_jogo() {
 	const pecas = ["", "♔", "♕", "♖", "♗", "♘", "♙", "♚", "♛", "♜", "♝", "♞", "♟"];
 	let tabuleiro = document.getElementById('tabuleiro');
-	let tabData = jogo.getTabuleiro();
-	//console.log(tabData);
+	let tabData = jogo.tabuleiro;
+
 	for (var i = 0, n = tabuleiro.rows.length; i < n; i++) {
 		for (var j = 0, m = tabuleiro.rows[i].cells.length; j < m; j++) {
 			obj = tabuleiro.rows[i].cells[j]
